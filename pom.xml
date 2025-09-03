@@ -17,6 +17,15 @@
     <name>server</name>
     <description>Barbershop Server</description>
 
+    <developers>
+        <developer>
+            <name>Douglas Dreer</name>
+            <email>dmd@bdmg.mg.gov.br</email>
+            <organization>BDMG - Banco de Desenvolvimento do Estado de Minas Gerais</organization>
+            <organizationUrl>https://bdmg.mg.gov.br/</organizationUrl>
+        </developer>
+    </developers>
+
     <!-- =================================================================== -->
     <!-- PRÁTICA 1: Centralizar todas as versões customizadas aqui -->
     <!-- =================================================================== -->
@@ -27,6 +36,7 @@
         <mockkVersion>1.14.5</mockkVersion>
         <springmockk.version>4.0.2</springmockk.version>
         <spring-boot-starter-aop.version>3.5.5</spring-boot-starter-aop.version>
+        <jacoco.version>0.8.11</jacoco.version>
     </properties>
 
     <!-- =================================================================== -->
@@ -113,6 +123,13 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- Quality Tools -->
+        <dependency>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>4.0.0.4121</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -159,7 +176,72 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>4.0.0.4121</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <formats>
+                                <format>XML</format>
+                            </formats>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>coverage</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${jacoco.version}</version>
+                        <executions>
+                            <execution>
+                                <id>prepare-agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>report</id>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                                <configuration>
+                                    <formats>
+                                        <format>XML</format>
+                                    </formats>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
