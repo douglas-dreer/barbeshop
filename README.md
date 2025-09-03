@@ -2,6 +2,10 @@
 
 API de backend para o sistema de gerenciamento de barbearia, desenvolvida com Kotlin e Spring Boot.
 
+[![Coverage](http://localhost:9000/api/project_badges/measure?project=barbershop&metric=coverage&token=sqb_9d88c80e0d54a37aa3bc5a6623c24e024e5952f3)](http://localhost:9000/dashboard?id=barbershop)
+
+[![Quality gate](http://localhost:9000/api/project_badges/quality_gate?project=barbershop&token=sqb_9d88c80e0d54a37aa3bc5a6623c24e024e5952f3)](http://localhost:9000/dashboard?id=barbershop)
+
 ## 🚀 Tecnologias Utilizadas
 
 - **Linguagem:** [Kotlin](https://kotlinlang.org/)
