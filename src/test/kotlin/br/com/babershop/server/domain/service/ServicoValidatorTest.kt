@@ -1,5 +1,6 @@
 package br.com.babershop.server.domain.service
 
+import br.com.babershop.server.domain.exception.CampoObrigatorioException
 import br.com.babershop.server.domain.exception.ServicoJaCadastradoException
 import br.com.babershop.server.domain.port.output.ServicoRepositoryPort
 import br.com.babershop.server.domain.service.servico.ServicoValidator
@@ -47,10 +48,10 @@ class ServicoValidatorTest: ServicoFactory() {
     }
 
     @Test
-    fun `must return IllegalArgumentException when servico name is null`() {
+    fun `must return CampoObrigatorioException when servico name is null`() {
         val servico = criarServico(nome = "")
 
-        assertThrows<IllegalArgumentException> { servicoValidator.validarAntesDeInserir(servico) }
+        assertThrows<CampoObrigatorioException> { servicoValidator.validarAntesDeInserir(servico) }
 
         verify(exactly = 0) { servicoRepositoryPort.existePorNome(any()) }
     }
