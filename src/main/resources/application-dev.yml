@@ -1,0 +1,22 @@
+# ===================================================================
+# CONFIGURAÇÕES DO SPRING BOOT PARA O AMBIENTE DE DESENVOLVIMENTO (DEV)
+# ===================================================================
+
+spring:
+  # Configurações de conexão com o banco de dados
+  datasource:
+    url: jdbc:oracle:thin:@${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:1521}:${DATASOURCE_SERVICE:XE}
+    username: ${USERNAME_DB:barman}
+    password: ${PASSWORD_DB:Barman@123456}
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  # Configurações do JPA e Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: create-drop # 'update': atualiza o schema do banco de dados na inicialização. Cuidado em produção. Outras opções: 'validate', 'create', 'create-drop', 'none'.
+    show-sql: true # Mostra os comandos SQL gerados pelo Hibernate no console. Útil para debug.
+    properties:
+      hibernate:
+        format_sql: true # Formata o SQL exibido no console para melhor legibilidade.
+        dialect: org.hibernate.dialect.OracleDialect # Dialeto específico para o banco de dados Oracle, necessário para o Hibernate gerar SQL compatível.
+  

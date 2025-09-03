@@ -1,0 +1,21 @@
+# ===================================================================
+# CONFIGURAÇÕES DO SPRING BOOT PARA O AMBIENTE DE DESENVOLVIMENTO (DEV)
+# ===================================================================
+
+spring:
+  # Configurações de conexão com o banco de dados
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  # Configurações do JPA e Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: create-drop # 'update': atualiza o schema do banco de dados na inicialização. Cuidado em produção. Outras opções: 'validate', 'create', 'create-drop', 'none'.
+    show-sql: true # Mostra os comandos SQL gerados pelo Hibernate no console. Útil para debug.
+    properties:
+      hibernate:
+        format_sql: true # Formata o SQL exibido no console para melhor legibilidade.
+        dialect: org.hibernate.dialect.H2Dialect # Dialeto específico para o banco de dados H2, necessário para o Hibernate gerar SQL compatível.
