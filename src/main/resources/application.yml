@@ -1,3 +1,9 @@
 spring:
   application:
     name: babershop-server
+
+# Configuração de Api externas
+api:
+  viacep:
+    nome: Via Cep
+    url: https://viacep.com.br/ws/
